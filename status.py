@@ -14,19 +14,53 @@ statusButtonPin = Button(3) # Pin for showing the status of the server on the LE
 
 def Poweroff():
     wiringpi.softPwmWrite(pinOn,0)
-    Clean()
     time.sleep(1)
+    print ("Shutting down")
     command = "/usr/bin/sudo /sbin/reboot now"
     process = subprocess.Popen(command.split(), stdout=subprocess.PIPE)
     output = process.communicate()[0]
     print (str(output))
     print ("end")
 
+def clean():
+    print ("Cleaning Pins")
+    ledPin.off()
+
+
+clean()
 while True:
     if powerButtonPin.is_pressed:
         ledPin.on()
-        time.sleep(0.5)
-        ledPin.off()
         Poweroff()
+    while statusButtonPin.is_pressed:
+        if status == 1:
+            # Flash and then no light.
+            print("The status is 1")
+            ledPin.on()
+            time.sleep(0.2)
+            while statusButtonPin.is_pressed:
+                ledPin.off()
+            ledPin.off()
+        if status == 2:
+            # Flashing
+            print("The status is 2")
+            while statusButtonPin.is_pressed:
+                ledPin.on()
+                time.sleep(0.3)
+                ledPin.off()
+                time.sleep(0.3)
+        if status == 3:
+            # Dot Dash Dot Dash Dot
+            print("The status is 3")
+            while statusButtonPin.is_pressed:
+                ledPin.on()
+                time.sleep(0.3)
+                ledPin.off()
+                time.sleep(0.3)
+                ledPin.on()
+                time.sleep(0.9)
+                ledPin.off()
+                time.sleep(0.3)
+            
         
     
