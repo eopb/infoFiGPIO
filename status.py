@@ -61,6 +61,13 @@ while True:
                 time.sleep(0.9)
                 ledPin.off()
                 time.sleep(0.3)
+        if status == 1:
+            # solid light.
+            print("The status is 4")
+            while statusButtonPin.is_pressed:
+                ledPin.on()
+            ledPin.off()
+    #Finding the status goes here!
             
         
     
