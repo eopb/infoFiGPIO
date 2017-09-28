@@ -4,16 +4,16 @@
 
 from gpiozero import LED
 from gpiozero import Button
-from time import sleep
+import time
 import sys
 import subprocess
 
-ledPin = LED(1) # Pin for simple status LED
-powerButtonPin = Button(2) # Pin for power switch for restart
+ledPin = LED(4) # Pin for simple status LED
+powerButtonPin = Button(17) # Pin for power switch for restart
 statusButtonPin = Button(3) # Pin for showing the status of the server on the LED
 
 def Poweroff():
-    wiringpi.softPwmWrite(pinOn,0)
+    ledPin.on()
     time.sleep(1)
     print ("Shutting down")
     command = "/usr/bin/sudo /sbin/reboot now"
