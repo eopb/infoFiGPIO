@@ -8,9 +8,9 @@ import time
 import sys
 import subprocess
 
-ledPin = LED(0) # Pin for simple status LED
-powerButtonPin = Button(2) # Pin for power switch for restart
-statusButtonPin = Button(3) # Pin for showing the status of the server on the LED
+ledPin = LED(17) # Pin for simple status LED
+powerButtonPin = Button(27) # Pin for power switch for restart
+statusButtonPin = Button(22) # Pin for showing the status of the server on the LED
 
 def Poweroff():
     ledPin.on()
