@@ -27,7 +27,29 @@ def clean():
     ledPin.off()
 
 def checkStatus():
-    pass
+    proc = subprocess.Popen('pstree', stdout=subprocess.PIPE)
+    tmp = proc.stdout.read()
+    tmp = tmp.replace("|", "")
+    tmp = tmp.replace("-", "")
+    tmp = tmp.replace("{", "")
+    tmp = tmp.replace("}", "")
+    tmp = tmp.replace("[", "")
+    tmp = tmp.replace("]", "")
+    tmp = tmp.replace(" ", "")
+    tmp = tmp.replace("`", "")
+    tmp = tmp.replace("*", "")
+    tmp = tmp.replace("(", "")
+    tmp = tmp.replace(")", "")
+    tmp = tmp.replace("|", "")
+    tmp = tmp.split("\n")
+    for service in tmp:
+        if service == "gmain":
+            status = 2
+            return status
+        else pass
+            
+        
+
 
 
 clean()
@@ -36,6 +58,7 @@ while True:
         ledPin.on()
         Poweroff()
     while statusButtonPin.is_pressed:
+        status = checkStatus()
         if status == 1:
             # Flash and then no light.
             print("The status is 1")
