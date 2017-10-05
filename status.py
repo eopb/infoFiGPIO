@@ -43,7 +43,7 @@ def checkStatus():
     tmp = tmp.replace("|", "")
     tmp = tmp.split("\n")
     for service in tmp:
-        if service == "gmain":
+        if service == "apache2":
             status = 2
             return status
         else: pass
