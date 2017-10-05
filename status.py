@@ -46,7 +46,7 @@ def checkStatus():
         if service == "gmain":
             status = 2
             return status
-        else pass
+        else: pass
             
         
 
