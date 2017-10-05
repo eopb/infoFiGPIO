@@ -26,6 +26,9 @@ def clean():
     print ("Cleaning Pins")
     ledPin.off()
 
+def checkStatus():
+    pass
+
 
 clean()
 while True:
