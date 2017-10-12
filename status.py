@@ -1,6 +1,8 @@
 #!/usr/bin/env python2
 # Python script for controling status light and shutdown button on raspberry pi
 # Author : Ethan Brierley
+#services are dnsmasq, hostapd, apache2
+
 
 from gpiozero import LED
 from gpiozero import Button
@@ -47,8 +49,8 @@ def checkStatus():
             status = 2
             return status
         else: pass
-            
-        
+
+
 
 
 
@@ -94,6 +96,3 @@ while True:
                 ledPin.on()
             ledPin.off()
     #Finding the status goes here!
-            
-        
-    
