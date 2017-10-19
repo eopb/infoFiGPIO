@@ -53,7 +53,9 @@ def checkStatus():
     tmp = tmp.replace(")", "")
     tmp = tmp.replace("|", "")
     tmp = tmp.split("\n")
-    checkForKeyWords(tmp)
+    if checkForKeyWords(tmp) == False:
+        return 2
+    return 1
 
 
 
