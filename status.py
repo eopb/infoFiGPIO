@@ -68,9 +68,9 @@ while True:
         Poweroff()
     while statusButtonPin.is_pressed:
         status = checkStatus()
-        if status == 1:
+        if status == 4:
             # Flash and then no light.
-            print("The status is 1")
+            print("The status is 4")
             ledPin.on()
             time.sleep(0.2)
             while statusButtonPin.is_pressed:
@@ -98,7 +98,7 @@ while True:
                 time.sleep(0.3)
         if status == 1:
             # solid light.
-            print("The status is 4")
+            print("The status is 1")
             while statusButtonPin.is_pressed:
                 ledPin.on()
             ledPin.off()
