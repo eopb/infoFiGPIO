@@ -28,6 +28,15 @@ def clean():
     print ("Cleaning Pins")
     ledPin.off()
 
+def checkForKeyWords(service):
+    if "dnsmasq" not in service:
+        return False
+    if "hostapd" not in service:
+        return False
+    if "apache2" not in service:
+        return False
+    return True
+
 def checkStatus():
     proc = subprocess.Popen('pstree', stdout=subprocess.PIPE)
     tmp = proc.stdout.read()
@@ -44,11 +53,7 @@ def checkStatus():
     tmp = tmp.replace(")", "")
     tmp = tmp.replace("|", "")
     tmp = tmp.split("\n")
-    for service in tmp:
-        if service == "apache2":
-            status = 2
-            return status
-        else: pass
+    checkForKeyWords(tmp)
 
 
 
