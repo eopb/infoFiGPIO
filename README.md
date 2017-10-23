@@ -1,4 +1,7 @@
-# infoFiGPIO
+# InfoFiGPIO
+
+Please note that this is a copy of [Ethan's original script](https://github.com/ethanboxx/infoFiGPIO)
+
 GPIO Python 2 script for the [TechResort](http://techresorteb.com/) Info-Fi project.
 
 *Script written by Ethan Brierley*
@@ -26,6 +29,16 @@ status 3 = Nothing set = Flashes in a morse code rhythm of **dot** *dash* **dot*
 status 4 = Nothing set = Flashes for a short amount of time then stays off.
 
 The inclusion of status codes 3 and 4 allow for simple expansion should we need to in the future.
+
+## Pin numbers used.
+
+The pin numbers are stored near the top of the document in varibles.
+
+Pin number for status LED = 17
+
+Pin number for Poweroff/Reset button = 27
+
+Pin number for Button used to display the status = 22
 
 ## Python/GPIO information
 
