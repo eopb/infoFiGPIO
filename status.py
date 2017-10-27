@@ -117,4 +117,5 @@ while True:
             ledPin.off()
     if time.time() - start_time > 86400: #86400 is the number of seconds in 24hours.
 		print ("Script has been running for 24 hours")
+		start_time = time.time()
 		moveLogs()
