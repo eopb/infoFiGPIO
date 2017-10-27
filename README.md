@@ -54,7 +54,7 @@ To start the script upon restart run.
 sudo crontab -e
 ```
 
-Add this line to the file that will be opened by this command.
+Add this line to the file that will be opened by the crontab command.
 
 ```
 @reboot sh /home/pi/launcher.sh >/home/pi/logs/cronlog 2>&1
