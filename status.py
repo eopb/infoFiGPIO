@@ -3,6 +3,7 @@
 # Author : Ethan Brierley
 #services are dnsmasq, hostapd, apache2
 
+print ("Importing libraries")
 
 from gpiozero import LED
 from gpiozero import Button
