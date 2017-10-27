@@ -30,16 +30,6 @@ status 4 = Nothing set = Flashes for a short amount of time then stays off.
 
 The inclusion of status codes 3 and 4 allow for simple expansion should we need to in the future.
 
-## Pin numbers used.
-
-The pin numbers are stored near the top of the document in varibles.
-
-Pin number for status LED = 17
-
-Pin number for Poweroff/Reset button = 27
-
-Pin number for Button used to display the status = 22
-
 ## Python/GPIO information
 
 Required Python libraries:
@@ -52,7 +42,7 @@ Required Python libraries:
 
 * [subprocess](https://docs.python.org/2/library/subprocess.html)
 
-All of these are imported at the top of the *main.py* file, and come as standard on the latest [Raspbian Download](https://www.raspberrypi.org/downloads/).
+All of these are imported at the top of the *status.py* file, and come as standard on the latest [Raspbian Download](https://www.raspberrypi.org/downloads/).
 
 Python 2.x.x is used for this project.
 
