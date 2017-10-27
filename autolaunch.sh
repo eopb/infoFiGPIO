@@ -4,5 +4,6 @@
 
 cd /
 cd home/pi
+sudo mkdir logs
 sudo python status.py
 cd /
