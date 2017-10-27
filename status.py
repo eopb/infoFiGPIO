@@ -33,10 +33,13 @@ def clean():
 
 def checkForKeyWords(service):
     if "dnsmasq" not in service:
+        print ("dnsmasq not found")
         return False
     if "hostapd" not in service:
+        print ("hostapd not found")
         return False
     if "apache2" not in service:
+        print ("apache2 not found")
         return False
     return True
 
