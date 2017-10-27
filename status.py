@@ -14,6 +14,8 @@ ledPin = LED(17) # Pin for simple status LED
 powerButtonPin = Button(27) # Pin for power switch for restart
 statusButtonPin = Button(22) # Pin for showing the status of the server on the LED
 
+start_time = time.time()
+
 def Poweroff():
     ledPin.on()
     time.sleep(1)
@@ -56,6 +58,12 @@ def checkStatus():
     if checkForKeyWords(tmp) == False:
         return 2
     return 1
+
+def moveLogs():
+	pass
+	#Code that moves logs.
+	
+	
 
 
 
@@ -102,4 +110,5 @@ while True:
             while statusButtonPin.is_pressed:
                 ledPin.on()
             ledPin.off()
-    #Finding the status goes here!
+    if time.time() - start_time > 86400: #86400 is the number of seconds in 24hours.
+		moveLogs()
