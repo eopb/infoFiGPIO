@@ -3,6 +3,7 @@
 # Author : Ethan Brierley
 #services are dnsmasq, hostapd, apache2
 
+print ("Importing libraries")
 
 from gpiozero import LED
 from gpiozero import Button
@@ -32,10 +33,13 @@ def clean():
 
 def checkForKeyWords(service):
     if "dnsmasq" not in service:
+        print ("dnsmasq not found")
         return False
     if "hostapd" not in service:
+        print ("hostapd not found")
         return False
     if "apache2" not in service:
+        print ("apache2 not found")
         return False
     return True
 
@@ -60,6 +64,7 @@ def checkStatus():
     return 1
 
 def moveLogs():
+	print ("Reorganizing logs and removing old logs. ")
 	pass
 	#Code that moves logs.
 	
@@ -111,4 +116,6 @@ while True:
                 ledPin.on()
             ledPin.off()
     if time.time() - start_time > 86400: #86400 is the number of seconds in 24hours.
+		print ("Script has been running for 24 hours")
+		start_time = time.time()
 		moveLogs()
