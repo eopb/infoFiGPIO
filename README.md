@@ -1,7 +1,5 @@
 # InfoFiGPIO
 
-Please note that this is a copy of [Ethan's original script](https://github.com/ethanboxx/infoFiGPIO)
-
 GPIO Python 2 script for the [TechResort](http://techresorteb.com/) Info-Fi project.
 
 *Script written by Ethan Brierley*
