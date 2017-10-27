@@ -46,5 +46,47 @@ Python 2.x.x is used for this project.
 
 The GPIO naming scheme used is the Broadcom (BCM) pin numbering layout. A chart converting board (physcial) pin numbers to their BCM names can be found [here](https://i.imgur.com/TCTy4v9.png).
 
+## Setup.
 
+To start the script upon restart run.
+
+```
+sudo crontab -e
+```
+
+Add this line to the file that will be opened by the crontab command.
+
+```
+@reboot sh /home/pi/launcher.sh >/home/pi/logs/cronlog 2>&1
+```
+
+The file sould look something like this.
+
+```
+# Edit this file to introduce tasks to be run by cron.
+# 
+# Each task to run has to be defined through a single line
+# indicating with different fields when the task will be run
+# and what command to run for the task
+# 
+# To define the time you can provide concrete values for
+# minute (m), hour (h), day of month (dom), month (mon),
+# and day of week (dow) or use '*' in these fields (for 'any').# 
+# Notice that tasks will be started based on the cron's system
+# daemon's notion of time and timezones.
+# 
+# Output of the crontab jobs (including errors) is sent through
+# email to the user the crontab file belongs to (unless redirected).
+# 
+# For example, you can run a backup of all your user accounts
+# at 5 a.m every week with:
+# 0 5 * * 1 tar -zcf /var/backups/home.tgz /home/
+# 
+# For more information see the manual pages of crontab(5) and cron(8)
+# 
+# m h  dom mon dow   command
+@reboot sh /home/pi/launcher.sh >/home/pi/logs/cronlog 2>&1
+```
+
+Save with Ctrl-x.
 
