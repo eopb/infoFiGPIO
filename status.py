@@ -64,6 +64,7 @@ def checkStatus():
     return 1
 
 def moveLogs():
+	print ("Reorganizing logs and removing old logs. ")
 	pass
 	#Code that moves logs.
 	
@@ -115,4 +116,5 @@ while True:
                 ledPin.on()
             ledPin.off()
     if time.time() - start_time > 86400: #86400 is the number of seconds in 24hours.
+		print ("Script has been running for 24 hours")
 		moveLogs()
