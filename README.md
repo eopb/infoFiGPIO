@@ -46,6 +46,10 @@ Python 2.x.x is used for this project.
 
 The GPIO naming scheme used is the Broadcom (BCM) pin numbering layout. A chart converting board (physcial) pin numbers to their BCM names can be found [here](https://i.imgur.com/TCTy4v9.png).
 
+## Logs.
+
+Logs are stored in /home/pi/logs/ in the file `cronlog`. Older logs are stored in `cronlog2`, `cronlog3`, `cronlog4` and `cronlog5`
+
 ## Setup.
 
 To start the script upon restart run.
