@@ -1,5 +1,6 @@
 #!/bin/sh
-# This script is for 
+# Author : Ethan Brierley
+# This script is to be started on start up with the correct cron setup.
 # Navigate to home directory, then to the home directory, then make a logs folder, then execute python script, then back home.
 
 cd /
