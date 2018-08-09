@@ -14,6 +14,7 @@ import subprocess
 ledPin = LED(14) # Pin for simple status LED
 powerButtonPin = Button(18) # No longer needed.
 statusButtonPin = Button(22) # Pin for showing the status of the server on the LED
+statusButtonPin2 = Button(22)
 
 start_time = time.time()
 
@@ -81,6 +82,10 @@ while True:
         Poweroff()
     while statusButtonPin.is_pressed:
         pass
+    if checkStatus() == 2:
+        statusButtonPin2.off
+    else:
+        statusButtonPin2.on
     if time.time() - start_time > 86400: #86400 is the number of seconds in 24hours.
         print ("Script has been running for 24 hours")
         start_time = time.time()
