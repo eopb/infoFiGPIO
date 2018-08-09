@@ -64,11 +64,11 @@ def checkStatus():
     return 1
 
 def moveLogs():
-	print ("Reorganizing logs and removing old logs. ")
-	pass
-	#Code that moves logs.
-	
-	
+    print ("Reorganizing logs and removing old logs. ")
+    pass
+    #Code that moves logs.
+
+
 
 
 
@@ -80,42 +80,8 @@ while True:
         ledPin.on()
         Poweroff()
     while statusButtonPin.is_pressed:
-        status = checkStatus()
-        if status == 4:
-            # Flash and then no light.
-            print("The status is 4")
-            ledPin.on()
-            time.sleep(0.2)
-            while statusButtonPin.is_pressed:
-                ledPin.off()
-            ledPin.off()
-        if status == 2:
-            # Flashing
-            print("The status is 2")
-            while statusButtonPin.is_pressed:
-                ledPin.on()
-                time.sleep(0.3)
-                ledPin.off()
-                time.sleep(0.3)
-        if status == 3:
-            # Dot Dash Dot Dash Dot
-            print("The status is 3")
-            while statusButtonPin.is_pressed:
-                ledPin.on()
-                time.sleep(0.3)
-                ledPin.off()
-                time.sleep(0.3)
-                ledPin.on()
-                time.sleep(0.9)
-                ledPin.off()
-                time.sleep(0.3)
-        if status == 1:
-            # solid light.
-            print("The status is 1")
-            while statusButtonPin.is_pressed:
-                ledPin.on()
-            ledPin.off()
+        pass
     if time.time() - start_time > 86400: #86400 is the number of seconds in 24hours.
-		print ("Script has been running for 24 hours")
-		start_time = time.time()
-		moveLogs()
+        print ("Script has been running for 24 hours")
+        start_time = time.time()
+        moveLogs()
