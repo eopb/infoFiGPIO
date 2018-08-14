@@ -16,6 +16,10 @@ powerButtonPin = Button(18) # No longer needed.
 statusButtonPin = Button(22) # Pin for showing the status of the server on the LED
 statusButtonPin2 = Button(22)
 
+redPin = Button(4)
+bluePin = Button(17)
+greenPin = Button(27)
+
 start_time = time.time()
 
 def Poweroff():
@@ -76,17 +80,26 @@ def moveLogs():
 
 
 clean()
+numberOfRuns = 0
 while True:
+    numberOfRuns = numberOfRuns + 1
     if powerButtonPin.is_pressed:
         ledPin.on()
         Poweroff()
     while statusButtonPin.is_pressed:
         pass
     if checkStatus() == 2:
-        statusButtonPin2.on
+        redPin.on
     else:
-        statusButtonPin2.off
+        redPin.off
+        if numberOfRuns > 2:
+            greenPin.on
+            time.sleep(1)
+            greenPin.off
+            numberOfRuns = 0
     if time.time() - start_time > 86400: #86400 is the number of seconds in 24hours.
         print ("Script has been running for 24 hours")
         start_time = time.time()
         moveLogs()
+    time.sleep(15)
+
