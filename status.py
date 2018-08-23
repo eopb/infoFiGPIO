@@ -16,9 +16,9 @@ powerButtonPin = Button(18) # No longer needed.
 statusButtonPin = Button(22) # Pin for showing the status of the server on the LED
 statusButtonPin2 = Button(23)
 
-redPin = LED(4)
-bluePin = LED(17)
-greenPin = LED(27)
+greenPin = LED(4)
+bluePin = LED(27)
+redPin = LED(17)
 
 start_time = time.time()
 
@@ -35,8 +35,10 @@ def Poweroff():
 def clean():
     print ("Cleaning Pins")
     ledPin.off()
-
+    redPin.off()
+    greenPin.off()
 def checkForKeyWords(service):
+    print (service)
     if "dnsmasq" not in service:
         print ("dnsmasq not found")
         return False
@@ -45,7 +47,12 @@ def checkForKeyWords(service):
         return False
     if "apache2" not in service:
         print ("apache2 not found")
-        return False
+        if "systemd+apache22apache226apache2" not in service:
+            print ("systemd+apache22apache226apache2 not found")
+            return False
+        return True
+
+
     return True
 
 def checkStatus():
@@ -83,13 +90,14 @@ clean()
 numberOfRuns = 0
 while True:
     numberOfRuns = numberOfRuns + 1
-    if powerButtonPin.is_pressed:
-        ledPin.on()
-        Poweroff()
+#    if powerButtonPin.is_pressed:
+#        ledPin.on()
+#        Poweroff()
     while statusButtonPin.is_pressed:
         pass
     if checkStatus() == 2:
         redPin.on()
+        print ("debug stuff")
     else:
         redPin.off()
         if numberOfRuns > 2:
