@@ -14,6 +14,11 @@ import subprocess
 ledPin = LED(14) # Pin for simple status LED
 powerButtonPin = Button(18) # No longer needed.
 statusButtonPin = Button(22) # Pin for showing the status of the server on the LED
+statusButtonPin2 = Button(23)
+
+greenPin = LED(4)
+bluePin = LED(27)
+redPin = LED(17)
 
 start_time = time.time()
 
@@ -30,8 +35,10 @@ def Poweroff():
 def clean():
     print ("Cleaning Pins")
     ledPin.off()
-
+    redPin.off()
+    greenPin.off()
 def checkForKeyWords(service):
+    print (service)
     if "dnsmasq" not in service:
         print ("dnsmasq not found")
         return False
@@ -40,7 +47,12 @@ def checkForKeyWords(service):
         return False
     if "apache2" not in service:
         print ("apache2 not found")
-        return False
+        if "systemd+apache22apache226apache2" not in service:
+            print ("systemd+apache22apache226apache2 not found")
+            return False
+        return True
+
+
     return True
 
 def checkStatus():
@@ -64,58 +76,38 @@ def checkStatus():
     return 1
 
 def moveLogs():
-	print ("Reorganizing logs and removing old logs. ")
-	pass
-	#Code that moves logs.
-	
-	
+    print ("Reorganizing logs and removing old logs. ")
+    pass
+    #Code that moves logs.
+
+
 
 
 
 
 
 clean()
+numberOfRuns = 0
 while True:
-    if powerButtonPin.is_pressed:
-        ledPin.on()
-        Poweroff()
+    numberOfRuns = numberOfRuns + 1
+#    if powerButtonPin.is_pressed:
+#        ledPin.on()
+#        Poweroff()
     while statusButtonPin.is_pressed:
-        status = checkStatus()
-        if status == 4:
-            # Flash and then no light.
-            print("The status is 4")
-            ledPin.on()
-            time.sleep(0.2)
-            while statusButtonPin.is_pressed:
-                ledPin.off()
-            ledPin.off()
-        if status == 2:
-            # Flashing
-            print("The status is 2")
-            while statusButtonPin.is_pressed:
-                ledPin.on()
-                time.sleep(0.3)
-                ledPin.off()
-                time.sleep(0.3)
-        if status == 3:
-            # Dot Dash Dot Dash Dot
-            print("The status is 3")
-            while statusButtonPin.is_pressed:
-                ledPin.on()
-                time.sleep(0.3)
-                ledPin.off()
-                time.sleep(0.3)
-                ledPin.on()
-                time.sleep(0.9)
-                ledPin.off()
-                time.sleep(0.3)
-        if status == 1:
-            # solid light.
-            print("The status is 1")
-            while statusButtonPin.is_pressed:
-                ledPin.on()
-            ledPin.off()
+        pass
+    if checkStatus() == 2:
+        redPin.on()
+        print ("debug stuff")
+    else:
+        redPin.off()
+        if numberOfRuns > 2:
+            greenPin.on()
+            time.sleep(1)
+            greenPin.off()
+            numberOfRuns = 0
     if time.time() - start_time > 86400: #86400 is the number of seconds in 24hours.
-		print ("Script has been running for 24 hours")
-		start_time = time.time()
-		moveLogs()
+        print ("Script has been running for 24 hours")
+        start_time = time.time()
+        moveLogs()
+    time.sleep(15)
+
