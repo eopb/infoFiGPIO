@@ -14,7 +14,6 @@ import subprocess
 ledPin = LED(14) # Pin for simple status LED
 powerButtonPin = Button(18) # No longer needed.
 statusButtonPin = Button(22) # Pin for showing the status of the server on the LED
-statusButtonPin2 = Button(23)
 
 greenPin = LED(4)
 bluePin = LED(27)
