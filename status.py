@@ -3,7 +3,7 @@ import sys
 import time
 from gpiozero import Button
 from gpiozero import LED
-+
+
 #!/usr/bin/env python2
 # Python script for controling status light and shutdown button on raspberry pi
 # Author : Ethan Brierley
@@ -56,7 +56,6 @@ def checkForKeyWords(service):
             print("systemd+apache22apache226apache2 not found")
             return False
         return True
-
     return True
 
 
