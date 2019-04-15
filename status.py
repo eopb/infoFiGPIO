@@ -15,20 +15,41 @@ powerButtonPin = None  # No longer needed.
 # Pin for showing the status of the server on the LED
 statusButtonPin = None
 
+start_time = time.time()
 
 GPIO.setmode(GPIO.BCM)
 
-GPIO.setup(4, GPIO.OUT)
-GPIO.setup(17, GPIO.OUT)
-GPIO.setup(27, GPIO.OUT)
 
-GPIO.output(4, 0)
-GPIO.output(17, 0)
-GPIO.output(27, 0)
-start_time = time.time()
+def setup_pin(num):
+    GPIO.setup(num, GPIO.OUT)
+    GPIO.output(num, 0)
 
 
-def Poweroff():
+setup_pin(4)
+setup_pin(17)
+setup_pin(27)
+
+
+def light(num, status):
+    if status:
+        GPIO.output(num, 1)
+    else:
+        GPIO.output(num, 0)
+
+
+def red(status):
+    light(4, status)
+
+
+def green(status):
+    light(17, status)
+
+
+def blue(status):
+    light(27, status)
+
+
+def power_off():
     time.sleep(1)
     print("Shutting down")
     command = "/usr/bin/sudo /sbin/reboot now"
@@ -40,6 +61,9 @@ def Poweroff():
 
 def clean():
     print("Cleaning Pins")
+    red(False)
+    green(False)
+    blue(False)
     GPIO.cleanup()
 
 
@@ -66,7 +90,7 @@ def checkForKeyWords(service):
     return True
 
 
-def checkStatus():
+def check_status():
     proc = subprocess.Popen('pstree', stdout=subprocess.PIPE)
     tmp = proc.stdout.read()
     tmp = tmp.replace("|", "")
@@ -87,10 +111,11 @@ def checkStatus():
     return 1
 
 
-def moveLogs():
+def move_logs():
     print("Reorganizing logs and removing old logs. ")
     pass
     # Code that moves logs.
+
 
 000
 numberOfRuns = 0
@@ -98,14 +123,14 @@ while True:
     numberOfRuns = numberOfRuns + 1
 #    if powerButtonPin.is_pressed:
 #        ledPin.on()
-#        Poweroff()
-    if checkStatus() == 2:
-        GPIO.output(27, 1)
+#        power_off()
+    if check_status() == 2:
+        red(False)
         print("debug stuff")
     else:
         clean()
         if numberOfRuns > 2:
-            GPIO.output(4, 1)
+            green(True)
             time.sleep(1)
             clean()
             numberOfRuns = 0
@@ -113,7 +138,7 @@ while True:
     if time.time() - start_time > 86400:
         print("Script has been running for 24 hours")
         start_time = time.time()
-        moveLogs()
+        move_logs()
     GPIO.output(17, 1)
     time.sleep(15)
 
