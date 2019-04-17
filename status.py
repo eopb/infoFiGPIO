@@ -28,6 +28,8 @@ def setup_pin(num):
 setup_pin(4)
 setup_pin(17)
 setup_pin(27)
+GPIO.setup(23, GPIO.IN, GPIO.PUD_UP)
+
 
 
 def light(num, status):
@@ -52,7 +54,7 @@ def blue(status):
 def power_off():
     time.sleep(1)
     print("Shutting down")
-    command = "/usr/bin/sudo /sbin/reboot now"
+    command = "/usr/bin/sudo /sbin/poweroff"
     process = subprocess.Popen(command.split(), stdout=subprocess.PIPE)
     output = process.communicate()[0]
     print(str(output))
@@ -117,9 +119,10 @@ def move_logs():
 
 
 while True:
-    #    if powerButtonPin.is_pressed:
-    #        ledPin.on()
-    #        power_off()
+    print(GPIO.input(23) != GPIO.HIGH)
+    if GPIO.input(23) != GPIO.HIGH:
+        blue(True)
+        power_off()
     if check_status() == 2:
         clean()
         for i in range(1, 100):

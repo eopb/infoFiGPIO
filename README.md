@@ -89,7 +89,7 @@ The file sould look something like this.
 # For more information see the manual pages of crontab(5) and cron(8)
 # 
 # m h  dom mon dow   command
-@reboot sh /home/pi/launcher.sh >/home/pi/logs/cronlog 2>&1
+@reboot sh /home/pi/autolaunch.sh >/home/pi/logs/cronlog 2>&1
 ```
 
 Save with Ctrl-x.

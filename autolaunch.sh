@@ -6,5 +6,6 @@
 cd /
 cd home/pi
 sudo mkdir logs
+sh autolaunchlog.sh
 sudo python status.py
 cd /
