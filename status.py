@@ -64,7 +64,6 @@ def clean():
     red(False)
     green(False)
     blue(False)
-    GPIO.cleanup()
 
 
 def checkForKeyWords(service):
@@ -117,29 +116,30 @@ def move_logs():
     # Code that moves logs.
 
 
-numberOfRuns = 0
 while True:
-    numberOfRuns = numberOfRuns + 1
-#    if powerButtonPin.is_pressed:
-#        ledPin.on()
-#        power_off()
+    #    if powerButtonPin.is_pressed:
+    #        ledPin.on()
+    #        power_off()
     if check_status() == 2:
-        red(False)
+        clean()
+        for i in range(1, 100):
+            red(True)
+            time.sleep(0.1)
+            red(False)
+            time.sleep(0.1)
         print("debug stuff")
     else:
         clean()
-        if numberOfRuns > 2:
-            green(True)
-            time.sleep(1)
-            clean()
-            numberOfRuns = 0
+        green(True)
+        time.sleep(0.5)
+        clean()
     # 86400 is the number of seconds in 24hours.
     if time.time() - start_time > 86400:
         print("Script has been running for 24 hours")
         start_time = time.time()
         move_logs()
-    GPIO.output(17, 1)
-    time.sleep(15)
+    clean()
+    time.sleep(10)
 
 
 GPIO.cleanup()
