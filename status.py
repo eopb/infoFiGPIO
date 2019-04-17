@@ -117,7 +117,6 @@ def move_logs():
     # Code that moves logs.
 
 
-000
 numberOfRuns = 0
 while True:
     numberOfRuns = numberOfRuns + 1
