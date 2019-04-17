@@ -94,3 +94,5 @@ The file sould look something like this.
 
 Save with Ctrl-x.
 
+
+## DONT FORGET LINE ENDINGS
