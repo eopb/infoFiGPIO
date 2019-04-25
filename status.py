@@ -31,7 +31,6 @@ setup_pin(27)
 GPIO.setup(23, GPIO.IN, GPIO.PUD_UP)
 
 
-
 def light(num, status):
     if status:
         GPIO.output(num, 1)
@@ -52,6 +51,8 @@ def blue(status):
 
 
 def power_off():
+    clean()
+    blue(True)
     time.sleep(1)
     print("Shutting down")
     command = "/usr/bin/sudo /sbin/poweroff"
@@ -121,7 +122,6 @@ def move_logs():
 while True:
     print(GPIO.input(23) != GPIO.HIGH)
     if GPIO.input(23) != GPIO.HIGH:
-        blue(True)
         power_off()
     if check_status() == 2:
         clean()

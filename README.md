@@ -18,15 +18,19 @@ The script runs the bash command `pstree` that outputs all of the sevices that a
 
 ## Status codes
 
-status 1 = Everything is working = Light stays on while button is pressed.
+status 1 = Everything is working = Light flashes green.
 
-status 2 = Crashed services = The Pi is running but one or more of the services have crashed, the light flashes on and off.
+status 2 = Crashed services = The Pi is running but one or more of the services have crashed, the light flashes red.
 
 status 3 = Nothing set = Flashes in a morse code rhythm of **dot** *dash* **dot** *dash* **dot** *dash*.
 
 status 4 = Nothing set = Flashes for a short amount of time then stays off.
 
 The inclusion of status codes 3 and 4 allow for simple expansion should we need to in the future.
+
+## Shutdown
+
+To safe shutdown hold button until light goes blue.
 
 ## Python/GPIO information
 
@@ -61,7 +65,7 @@ sudo crontab -e
 Add this line to the file that will be opened by the crontab command.
 
 ```
-@reboot sh /home/pi/launcher.sh >/home/pi/logs/cronlog 2>&1
+@reboot sh /home/pi/autolaunch.sh >/home/pi/logs/cronlog 2>&1| rotatelogs /home/pi/logs/cronlog 1k
 ```
 
 The file sould look something like this.
@@ -89,7 +93,7 @@ The file sould look something like this.
 # For more information see the manual pages of crontab(5) and cron(8)
 # 
 # m h  dom mon dow   command
-@reboot sh /home/pi/autolaunch.sh >/home/pi/logs/cronlog 2>&1
+@reboot sh /home/pi/autolaunch.sh >/home/pi/logs/cronlog 2>&1| rotatelogs /home/pi/logs/cronlog 1k
 ```
 
 Save with Ctrl-x.
