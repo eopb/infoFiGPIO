@@ -2,6 +2,7 @@ import subprocess
 import sys
 import time
 import RPi.GPIO as GPIO
+import re
 
 #!/usr/bin/env python2
 # Python script for controling status light and shutdown button on raspberry pi
@@ -70,6 +71,7 @@ def clean():
 
 
 def checkForKeyWords(service):
+    r = re.compile('.*apache2.*')
     print(service)
     if "dnsmasq" not in service:
         print("dnsmasq not found")
@@ -80,15 +82,9 @@ def checkForKeyWords(service):
     if "wpa_supplicant" not in service:
         print("wpa_supplicant not found")
         return False
-    if "apache2" not in service:
+    if not any(re.match(r, serv) for serv in service):
         print("apache2 not found")
-        if "systemd+apache22apache226apache2" not in service:
-            print("systemd+apache22apache226apache2 not found")
-            if "apache25apache2" not in service:
-                print("apache25apache2 not found")
-                return False
-            return True
-        return True
+        return False
     return True
 
 
