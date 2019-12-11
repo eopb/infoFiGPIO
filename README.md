@@ -6,6 +6,8 @@ GPIO Python 2 script for the [TechResort](http://techresorteb.com/) Info-Fi proj
 
 *Extra contributions by David Bi (hardware) and Sean Firth (documentation edits)*
 
+See also the [Website](https://github.com/ethanboxx/infoFiWebTemplate)
+
 ## What it does
 
 This Python 2 script checks to see if services are running and shows a status on a single LED to the end user, to check if there is a problem. It also features the option to power off the Raspberry Pi if a button, connected to the GPIO pins on the Pi, is pressed.
